@@ -1,0 +1,36 @@
+.container {
+	width: 100%;
+	height: 450px;
+	margin: 0 auto;
+	/* background-repeat: no-repeat;
+	background-size: cover;
+	background: linear-gradient(
+		180deg,
+		rgba(255, 246, 230, 1) 20%,
+		rgba(255, 254, 110, 1) 80%
+	); */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: end;
+}
+.main_container {
+	background-image: url("../../pexels-avonne-stalling-3916014.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 100vh;
+}
+.text {
+	font-family: "Montserrat", sans-serif;
+	font-size: 42px;
+	color: white;
+	text-shadow: 2px 0px 2px rgba(150, 150, 150, 1);
+}
+
+.button {
+	border: none;
+	background-color: #5d8aa6;
+	padding: 10px 30px;
+	border-radius: 30px;
+	color: white;
+}

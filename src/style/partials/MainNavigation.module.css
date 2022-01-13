@@ -1,0 +1,29 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+}
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 20px 50px;
+}
+.nav_link {
+	text-decoration: none;
+	color: #324235;
+	padding: 0 10px;
+	margin: 0 5px;
+	font-family: "Lora", serif;
+	font-weight: 500;
+}
+.nav_link:hover {
+	color: #5d8aa6;
+}
+.active {
+	color: red;
+}
+.logo {
+	width: 70px;
+	height: 55px;
+}
