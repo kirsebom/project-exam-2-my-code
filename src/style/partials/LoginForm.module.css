@@ -1,0 +1,81 @@
+.form {
+	margin-top: 100px;
+	width: 450px;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #5d8aa6;
+	text-align: center;
+	border-radius: 50px;
+	box-shadow: 5px 5px 15px 5px black;
+}
+.h1 {
+	font-size: 37px;
+	text-transform: uppercase;
+	color: #d7d7d9;
+}
+.input {
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #d7d7d9;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 23px;
+	transition: 0.25s;
+}
+.input::placeholder {
+	color: #d7d7d9;
+}
+.input:focus {
+	width: 290px;
+	border-color: #a6795d;
+}
+.button {
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #a6795d;
+	padding: 14px 45px;
+	outline: none;
+	color: #d7d7d9;
+	border-radius: 23px;
+	border-bottom-left-radius: 0px;
+	border-top-right-radius: 0px;
+	transition: 0.25s;
+	cursor: pointer;
+}
+.button:hover {
+	background: #a6795d;
+}
+.loader_container {
+	display: flex;
+	justify-content: center;
+}
+.login_error_container {
+	background: red;
+	width: 300px;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+}
+@media (max-width: 500px) {
+	.form {
+		max-width: 300px;
+		padding: 14px 0;
+	}
+	.input {
+		width: 170px;
+	}
+	.input:focus {
+		width: 220px;
+	}
+}

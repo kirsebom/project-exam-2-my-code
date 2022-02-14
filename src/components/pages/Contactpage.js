@@ -1,11 +1,13 @@
 import React from "react";
-import MainNavigation from "../MainNavigation";
+import SecondNavigation from "../SecondNavigation";
+import ContactForm from "../ContactForm";
 
 const Contactpage = () => {
 	return (
 		<div>
-			<MainNavigation />
+			<SecondNavigation />
 			<h1>Contact page</h1>
+			<ContactForm />
 		</div>
 	);
 };

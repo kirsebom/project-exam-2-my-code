@@ -1,4 +1,4 @@
-import styles from "../style/partials/MainNavigation.module.css";
+import styles from "../style/partials/SecondNavigation.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Searchbox from "./Searchbox";
 import logo from "../logo.png";
@@ -18,8 +18,13 @@ const MainNavigation = () => {
 		<header className={styles.header}>
 			<div className={styles.container}>
 				<NavLink to="/">
-					<img className={styles.logo} src={logo} alt="Logo" />
+					<img
+						className={`${styles.logo} ${styles.logo_first}`}
+						src={logo}
+						alt="Logo"
+					/>
 				</NavLink>
+
 				<nav className={styles.nav}>
 					<NavLink className={`${styles.nav_link}`} to="/bookings">
 						Bookings
@@ -28,7 +33,6 @@ const MainNavigation = () => {
 						Contact
 					</NavLink>
 				</nav>
-
 				{token ? (
 					<>
 						<button className={styles.logout_btn} onClick={logout}>

@@ -1,12 +1,18 @@
 import React from "react";
-import MainNavigation from "../../MainNavigation";
+import SecondNavigation from "../../SecondNavigation";
+import styles from "../../../style/pages/Login.module.css";
+import LoginForm from "../../LoginForm";
 
 const Loginpage = () => {
 	return (
-		<div>
-			<MainNavigation />
-			<h1>Login page</h1>
-		</div>
+		<>
+			<div className={styles.wrapper}>
+				<div>
+					<SecondNavigation />
+					<LoginForm />
+				</div>
+			</div>
+		</>
 	);
 };
 
