@@ -51,6 +51,10 @@
 	.container {
 		font-size: 12px;
 	}
+	.logo {
+		width: 48px;
+		height: 38px;
+	}
 }
 @media (max-width: 290px) {
 	.container {

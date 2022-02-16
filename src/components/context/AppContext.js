@@ -4,7 +4,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-	const [token, setToken] = useLocalStorage("Token: ", "");
+	const [token, setToken] = useLocalStorage("Token", "");
 
 	return (
 		<AppContext.Provider value={[token, setToken]}>

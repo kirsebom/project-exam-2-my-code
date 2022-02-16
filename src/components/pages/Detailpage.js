@@ -5,6 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import styles from "../../style/pages/details.module.css";
 import Modal from "../Modal";
 import Backdrop from "../Backdrop";
+import ImageSlider from "../ImageSlider";
 
 const Detailpage = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -72,12 +73,21 @@ const Detailpage = () => {
 		);
 	}
 
+	const imageArray = bookingDetails.images;
+	console.log(imageArray);
 	return (
 		<div>
 			<SecondNavigation />
-			<h1>Details page</h1>
-			<p>{bookingDetails.name}</p>
-			<button onClick={contactHandler}>Contact {bookingDetails.name}</button>
+			<h1 className={styles.header}>{bookingDetails.name}</h1>
+			<div className={styles.container}>
+				<ImageSlider />
+			</div>
+
+			<div className={styles.container}>
+				<p>{bookingDetails.description}</p>
+
+				<button onClick={contactHandler}>Contact {bookingDetails.name}</button>
+			</div>
 			{modalIsOpen && (
 				<Modal
 					onCancel={closeModalHandler}

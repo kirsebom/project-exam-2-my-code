@@ -79,3 +79,9 @@
 		width: 220px;
 	}
 }
+
+@media (max-width: 340px) {
+	.form {
+		max-width: 260px;
+	}
+}

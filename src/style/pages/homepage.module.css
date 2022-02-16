@@ -71,3 +71,18 @@
 		top: -400px;
 	}
 }
+
+@media (max-width: 625px) {
+	.text {
+		font-size: 32px;
+	}
+	.container {
+		justify-content: center;
+	}
+}
+@media (max-width: 480px) {
+	.text {
+		font-size: 26px;
+		text-align: center;
+	}
+}

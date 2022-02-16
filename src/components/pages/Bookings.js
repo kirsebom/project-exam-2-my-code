@@ -51,21 +51,31 @@ const Bookings = () => {
 	}
 
 	return (
-		<div className={styles.main_content}>
+		<>
 			<SecondNavigation />
-			<h1>All Bookings</h1>
+
+			<h1 className={styles.header}>All Bookings</h1>
+
 			<div className={styles.booking_cards_container}>
 				{bookings.map(function (booking) {
 					return (
-						<Link to={`/bookings/${booking.id}`}>
-							<div key={booking.id} className={styles.booking_card}>
-								<p>{booking.name}</p>
+						<Link
+							className={styles.booking_card}
+							to={`/bookings/${booking.id}`}
+						>
+							<div key={booking.id}>
+								<img
+									src={booking.images[0].src}
+									className={styles.image}
+									alt={booking.images[0].alt}
+								/>
+								<p className={styles.title}>{booking.name}</p>
 							</div>
 						</Link>
 					);
 				})}
 			</div>
-		</div>
+		</>
 	);
 };
 

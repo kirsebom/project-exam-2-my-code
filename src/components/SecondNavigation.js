@@ -6,7 +6,7 @@ import { useContext } from "react";
 import AppContext from "./context/AppContext";
 import AdminNavigation from "./AdminNavigation";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
 	const [token, setToken] = useContext(AppContext);
 	const navigate = useNavigate();
 	function logout() {

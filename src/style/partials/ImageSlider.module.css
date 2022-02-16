@@ -1,0 +1,26 @@
+.item {
+	min-height: 40rem;
+	min-width: 30rem;
+	padding: 40px;
+}
+.item_img {
+	width: 80%;
+	height: 80%;
+	border-radius: 2rem;
+	pointer-events: none;
+}
+.inner_carousel {
+	display: flex;
+	justify-content: flex-start;
+}
+.carousel {
+	cursor: grab;
+	overflow: hidden;
+}
+
+@media (max-width: 600px) {
+	.item_img {
+		width: 70%;
+		height: 70%;
+	}
+}

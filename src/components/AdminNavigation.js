@@ -15,7 +15,7 @@ const AdminNavigation = () => {
 				<NavLink className={styles.nav_link} to="/admin/enquiries">
 					Enquiries
 				</NavLink>
-				<NavLink className={styles.nav_link} to="admin/messages">
+				<NavLink className={styles.nav_link} to="/admin/messages">
 					Messages
 				</NavLink>
 			</nav>

@@ -28,3 +28,28 @@
 	width: 70px;
 	height: 55px;
 }
+
+@media (max-width: 560px) {
+	.container {
+		padding: 10px;
+	}
+}
+@media (max-width: 460px) {
+	.container {
+		font-size: 14px;
+	}
+}
+@media (max-width: 325px) {
+	.container {
+		font-size: 12px;
+	}
+	.logo {
+		width: 48px;
+		height: 38px;
+	}
+}
+@media (max-width: 290px) {
+	.container {
+		font-size: 10px;
+	}
+}

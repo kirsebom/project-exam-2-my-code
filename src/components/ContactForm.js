@@ -4,16 +4,13 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import axios from "axios";
 
 const schema = yup.object().shape({
-	firstname: yup
+	name: yup
 		.string()
-		.required("Enter your firstname")
-		.min(2, "Firstname must be atleast 2 characters long"),
-	lastname: yup
-		.string()
-		.required("Enter your lastname")
-		.min(2, "Lastname must be atleast 2 characters long"),
+		.required("Enter your full name")
+		.min(8, "Firstname must be atleast 8 characters long"),
 	email: yup
 		.string()
 		.required("Enter your email")
@@ -37,9 +34,36 @@ const ContactForm = () => {
 
 	function onSubmit(data) {
 		console.log(data);
+
+		const newData = JSON.stringify({
+			post: data.postId,
+			author_name: data.name,
+			author_email: data.email,
+			content: data.message,
+		});
+		console.log(newData);
+
 		if (Object.keys(errors).length === 0) {
 			console.log("Message has been sent");
 			setSubmitMessage(true);
+
+			fetch("https://omkirsebom.no/wp-json/wp/v2/comments", {
+				method: "post",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: newData,
+			})
+				.then((response) => {
+					if (response.ok === true) {
+						console.log("Submitted successfully");
+					}
+					return response.json();
+				})
+				.then((object) => {
+					console.log("ERROR: ", object.message);
+				})
+				.catch((error) => console.error("Error: ", error));
 		}
 	}
 	console.log("error: ", errors);
@@ -49,36 +73,22 @@ const ContactForm = () => {
 				<div className={styles.message_container}>Message has been sent</div>
 			) : (
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+					<input
+						type="hidden"
+						id="postId"
+						value={148}
+						{...register("postId")}
+					/>
 					<div className={styles.input_container}>
-						<input
-							name="firstname"
-							className={styles.input}
-							{...register("firstname")}
-						/>
-						<label for="firstname" className={styles.label}>
-							Firstname
+						<input name="name" className={styles.input} {...register("name")} />
+						<label for="name" className={styles.label}>
+							Name
 						</label>
 					</div>
-					{errors.firstname && (
-						<span className={styles.error_message}>
-							{errors.firstname.message}
-						</span>
+					{errors.name && (
+						<span className={styles.error_message}>{errors.name.message}</span>
 					)}
-					<div className={styles.input_container}>
-						<input
-							name="lastname"
-							className={styles.input}
-							{...register("lastname")}
-						/>
-						<label for="lastname" className={styles.label}>
-							Lastname
-						</label>
-					</div>
-					{errors.lastname && (
-						<span className={styles.error_message}>
-							{errors.lastname.message}
-						</span>
-					)}
+
 					<div className={styles.input_container}>
 						<input
 							name="email"
