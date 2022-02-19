@@ -8,6 +8,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 40px;
+	margin-top: 20px;
 	margin-bottom: 50px;
 }
 .input_container,
@@ -152,6 +153,13 @@
 	}
 }
 
+.loading_container {
+	text-align: center;
+	margin-top: 50px;
+}
+.loading_text {
+	padding: 50px;
+}
 @media (max-width: 425px) {
 	.form {
 		margin-left: 20px;

@@ -10,7 +10,7 @@ const schema = yup.object().shape({
 	name: yup
 		.string()
 		.required("Enter your full name")
-		.min(8, "Firstname must be atleast 8 characters long"),
+		.min(4, "Name must be atleast 4 characters long"),
 	email: yup
 		.string()
 		.required("Enter your email")
@@ -117,7 +117,10 @@ const ContactForm = () => {
 							{errors.message.message}
 						</span>
 					)}
-					<button className={styles.button}>Send Message</button>
+					<div className={styles.button_container}>
+						<button className={styles.button}>Send Message</button>
+						<div className={styles.button_background}></div>
+					</div>
 				</form>
 			)}
 		</>

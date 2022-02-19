@@ -1,4 +1,5 @@
 {
+  
   "name": "project-exam-2-my-code",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +14,7 @@
     "axios": "^0.26.0",
     "bootstrap": "^5.1.3",
     "framer-motion": "^6.2.6",
+    "lodash": "^4.17.21",
     "node": "^17.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
@@ -48,4 +50,5 @@
       "last 1 safari version"
     ]
   }
+
 }

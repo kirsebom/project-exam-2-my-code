@@ -12,6 +12,7 @@ import EnquiryPage from "./components/pages/adminpages/EnquiryPage";
 import MessagePage from "./components/pages/adminpages/MessagePage";
 import ResultsPage from "./components/pages/ResultsPage";
 import { SearchProvider } from "./components/context/SearchContext";
+import Testpage from "./components/pages/Testpage";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 						/>
 						<Route path="/admin/enquiries" element={<EnquiryPage />} />
 						<Route path="/admin/messages" element={<MessagePage />} />
+						<Route path="/test" element={<Testpage />} />
 					</Routes>
 				</SearchProvider>
 			</AppProvider>

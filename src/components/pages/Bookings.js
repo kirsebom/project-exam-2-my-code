@@ -3,6 +3,8 @@ import SecondNavigation from "../SecondNavigation";
 import styles from "../../style/pages/bookings.module.css";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
+import { PRODUCT_URL } from "../constants/api";
+import Footer from "../Footer";
 
 const Bookings = () => {
 	const [bookings, setBookings] = useState([]);
@@ -12,18 +14,10 @@ const Bookings = () => {
 	useEffect(function () {
 		async function fetchBookings() {
 			try {
-				const response = await fetch(
-					"https://omkirsebom.no/wp-json/wc/store/products"
-				);
-				if (response.ok) {
-					const json = await response.json();
-					console.log(json);
-					setBookings(json);
-				} else {
-					setError(
-						"An errror occured while trying to fetch all the booking options"
-					);
-				}
+				const response = await fetch(PRODUCT_URL);
+				const json = await response.json();
+				console.log(json);
+				setBookings(json);
 			} catch (error) {
 				setError(error.toString());
 			} finally {
@@ -52,29 +46,32 @@ const Bookings = () => {
 
 	return (
 		<>
-			<SecondNavigation />
+			<div className={styles.wrapper}>
+				<SecondNavigation />
 
-			<h1 className={styles.header}>All Bookings</h1>
+				<h1 className={styles.header}>All Bookings</h1>
 
-			<div className={styles.booking_cards_container}>
-				{bookings.map(function (booking) {
-					return (
-						<Link
-							className={styles.booking_card}
-							to={`/bookings/${booking.id}`}
-						>
-							<div key={booking.id}>
-								<img
-									src={booking.images[0].src}
-									className={styles.image}
-									alt={booking.images[0].alt}
-								/>
-								<p className={styles.title}>{booking.name}</p>
-							</div>
-						</Link>
-					);
-				})}
+				<div className={styles.booking_cards_container}>
+					{bookings.map(function (booking) {
+						return (
+							<Link
+								className={styles.booking_card}
+								to={`/bookings/${booking.id}`}
+							>
+								<div key={booking.id}>
+									<img
+										src={booking.images[0].src}
+										className={styles.image}
+										alt={booking.images[0].alt}
+									/>
+									<p className={styles.title}>{booking.name}</p>
+								</div>
+							</Link>
+						);
+					})}
+				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

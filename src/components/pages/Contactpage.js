@@ -1,14 +1,19 @@
 import React from "react";
 import SecondNavigation from "../SecondNavigation";
 import ContactForm from "../ContactForm";
+import styles from "../../style/pages/Contact.module.css";
+import Footer from "../Footer";
 
 const Contactpage = () => {
 	return (
-		<div>
-			<SecondNavigation />
-			<h1>Contact page</h1>
-			<ContactForm />
-		</div>
+		<>
+			<div className={styles.wrapper}>
+				<SecondNavigation />
+				<h1 className={styles.title}>Contact Holidaze</h1>
+				<ContactForm />
+			</div>
+			<Footer />
+		</>
 	);
 };
 

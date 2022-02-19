@@ -6,6 +6,7 @@ import styles from "../../style/pages/details.module.css";
 import Modal from "../Modal";
 import Backdrop from "../Backdrop";
 import ImageSlider from "../ImageSlider";
+import Footer from "../Footer";
 
 const Detailpage = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -75,28 +76,36 @@ const Detailpage = () => {
 
 	const imageArray = bookingDetails.images;
 	console.log(imageArray);
+	const description = bookingDetails.description;
 	return (
-		<div>
-			<SecondNavigation />
-			<h1 className={styles.header}>{bookingDetails.name}</h1>
-			<div className={styles.container}>
-				<ImageSlider />
-			</div>
+		<>
+			<div className={styles.wrapper}>
+				<SecondNavigation />
+				<h1 className={styles.header}>{bookingDetails.name}</h1>
+				<div className={styles.container}>
+					<ImageSlider />
+				</div>
 
-			<div className={styles.container}>
-				<p>{bookingDetails.description}</p>
+				<div className={styles.container}>
+					<p dangerouslySetInnerHTML={{ __html: description }}></p>
 
-				<button onClick={contactHandler}>Contact {bookingDetails.name}</button>
+					<button className={styles.button_contact} onClick={contactHandler}>
+						Contact {bookingDetails.name}
+					</button>
+				</div>
+				{modalIsOpen && (
+					<Modal
+						bookingDetails={bookingDetails}
+						postId={id}
+						onCancel={closeModalHandler}
+						onConfirm={closeModalHandler}
+						bookingTitle={bookingDetails.name}
+					/>
+				)}
+				{modalIsOpen && <Backdrop onCancel={closeModalHandler} />}
 			</div>
-			{modalIsOpen && (
-				<Modal
-					onCancel={closeModalHandler}
-					onConfirm={closeModalHandler}
-					bookingTitle={bookingDetails.name}
-				/>
-			)}
-			{modalIsOpen && <Backdrop onCancel={closeModalHandler} />}
-		</div>
+			<Footer />
+		</>
 	);
 };
 

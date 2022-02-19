@@ -2,7 +2,7 @@ import React from "react";
 import SecondNavigation from "../../SecondNavigation";
 import styles from "../../../style/pages/Login.module.css";
 import LoginForm from "../../LoginForm";
-
+import Footer from "../../Footer";
 const Loginpage = () => {
 	return (
 		<>
@@ -12,6 +12,7 @@ const Loginpage = () => {
 					<LoginForm />
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };
