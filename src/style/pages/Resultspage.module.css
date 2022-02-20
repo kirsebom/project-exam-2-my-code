@@ -1,3 +1,6 @@
+.wrapper {
+	flex: 1 0 auto;
+}
 .error_container {
 	background: red;
 	width: 260px;
@@ -7,5 +10,40 @@
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 .header {
+	text-align: center;
+}
+
+.booking_cards_container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1500px;
+	padding: 50px;
+	gap: 50px;
+	justify-content: center;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+.booking_card {
+	text-decoration: none;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	background: #fefefe;
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
+	transition: 0.3s ease;
+}
+.booking_card:hover {
+	transform: perspective(500px) translateZ(20px);
+	box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.15);
+	transition: 0.3s ease;
+	cursor: pointer;
+	color: black;
+}
+.image {
+	width: 300px;
+	height: 300px;
+}
+.title {
 	text-align: center;
 }

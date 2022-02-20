@@ -7,63 +7,90 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Searchbox = () => {
+	const navigate = useNavigate();
+	const [results, setResults] = useContext(SearchContext);
 	const [bookings, setBookings] = useState([]);
 	const [text, setText] = useState("");
-	const [suggestion, setSuggestions] = useState([]);
+	const [suggestions, setSuggestions] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
-	const [results, setResults] = useContext(SearchContext);
 
 	useEffect(function () {
-		async function loadBookings() {
+		const loadBookings = async () => {
 			const response = await axios.get(
 				"https://omkirsebom.no/wp-json/wc/store/products"
 			);
-			console.log(response.data);
+			console.log("bookings:", response.data);
 			setBookings(response.data);
-		}
+		};
 		loadBookings();
 	}, []);
 
-	function onChangeHandler(event) {
-		setSearchValue(event.target.value.toLowerCase());
-
-		const searchValue = event.target.value.trim().toLowerCase();
-		console.log(searchValue);
+	const onChangeHandler = (text) => {
+		let matches = [];
+		if (text.length > 0) {
+			matches = bookings.filter((booking) => {
+				const regex = new RegExp(`${text}`, "gi");
+				return booking.name.match(regex);
+			});
+		}
+		console.log("matches: ", matches);
+		setSuggestions(matches);
+		setText(text);
+		console.log("text:", text);
 		const filteredBookings = bookings.filter(function (booking) {
-			if (booking.name.toLowerCase().startsWith(searchValue)) {
+			if (booking.name.toLowerCase().startsWith(text.toLowerCase())) {
 				return true;
 			}
 		});
-		console.log(filteredBookings);
-		setSuggestions(filteredBookings);
+		setSearchValue(filteredBookings);
+	};
 
-		// filteredBookings.filter(function (booking) {
-		// 	console.log(JSON.stringify(booking.name));
-		// 	setSuggestions(JSON.stringify(booking.name));
-		// 	console.log("suggestions: ", suggestion);
-		// });
-		// console.log(bookingName);
-	}
-	const navigate = useNavigate();
-	function onClickHandler() {
-		console.log("Clicked!", searchValue);
-		console.log("suggestions", suggestion);
-		setResults(suggestion);
+	const onSuggestHandler = (text) => {
+		console.log(text);
+		setText(text);
+		setSuggestions([]);
+	};
+	const onClickHandler = (event) => {
+		console.log(event.target.value);
+
+		console.log("serachValue", searchValue);
+		console.log(text);
+		setText(text);
+		setResults(searchValue);
 		navigate("/results");
-	}
+	};
+
 	return (
-		<div className={styles.container}>
-			<input
-				className={styles.search_field}
-				type="text"
-				placeholder="search for booking.."
-				onChange={onChangeHandler}
-				// value={text}
-			></input>
-			<button className={styles.search_btn} onClick={onClickHandler}>
-				<FontAwesomeIcon className={styles.search_icon} icon={faSearch} />
-			</button>
-		</div>
+		<>
+			<div className={styles.container}>
+				<input
+					placeholder="search for booking.."
+					className={styles.search_field}
+					onChange={(e) => onChangeHandler(e.target.value)}
+					value={text}
+					onBlur={() => {
+						setTimeout(() => {
+							setSuggestions([]);
+						}, 100);
+					}}
+				></input>
+				<div className={styles.suggestion_container}>
+					{suggestions &&
+						suggestions.map((suggestion, i) => (
+							<div
+								key={suggestion.id}
+								className={styles.suggestion}
+								onClick={() => onSuggestHandler(suggestion.name)}
+							>
+								{suggestion.name}
+							</div>
+						))}
+				</div>
+				<button className={styles.search_btn} onClick={onClickHandler}>
+					<FontAwesomeIcon className={styles.search_icon} icon={faSearch} />
+				</button>
+			</div>
+		</>
 	);
 };
 

@@ -49,6 +49,7 @@ const schema = yup.object().shape({
 const NewEstablishmentPage = () => {
 	const [token, setToken] = useContext(AppContext);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 	const navigate = useNavigate();
 
 	useEffect(function () {
@@ -57,30 +58,6 @@ const NewEstablishmentPage = () => {
 			navigate("/login");
 		}
 	});
-
-	async function addProduct() {
-		const data = JSON.stringify({
-			name: "Scandic Hotel",
-			description: "Description for New Product",
-		});
-		try {
-			const response = await fetch(
-				"https://omkirsebom.no/wp-json/wc/v3/products",
-				{
-					method: "POST",
-					body: data,
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token.token}`,
-					},
-				}
-			);
-			const json = await response.json();
-			console.log(json);
-		} catch {
-			console.log("Couldent add product to api");
-		}
-	}
 
 	const {
 		register,
@@ -139,9 +116,11 @@ const NewEstablishmentPage = () => {
 					const json = await response.json();
 					console.log(json);
 					addPost();
+				} else {
+					setError("An error occured, plis refresh and try again");
 				}
-			} catch {
-				console.log("ERROR: couldent add product with images");
+			} catch (error) {
+				setError(error.toString());
 			}
 		}
 		addProductWithImages();
@@ -175,6 +154,15 @@ const NewEstablishmentPage = () => {
 			}
 		}
 	}
+	if (error) {
+		return (
+			<>
+				<SecondNavigation />
+				<div className={styles.error_container}>{error}</div>
+			</>
+		);
+	}
+
 	if (loading) {
 		return (
 			<>
@@ -195,6 +183,10 @@ const NewEstablishmentPage = () => {
 		<>
 			<div className={styles.wrapper}>
 				<SecondNavigation />
+				<p className={styles.info}>
+					For optimal image quality images should be vertical with the
+					dimensions 1280 by 1920 pixels
+				</p>
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles.input_container}>
 						<input

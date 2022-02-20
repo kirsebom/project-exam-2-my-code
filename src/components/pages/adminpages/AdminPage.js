@@ -23,12 +23,11 @@ const AdminPage = () => {
 				<h1 className={styles.title}>
 					You are logged in as {token.user_display_name}
 				</h1>
-				<div className={styles.container}>
-					<p className={styles.content}>
-						Welcome to the admin part of the page, by logging in you can now use
-						the adminpanel on the top of the page freely
-					</p>
-				</div>
+
+				<p className={styles.content}>
+					Welcome to the admin part of the page, by logging in you can now use
+					the adminpanel on the top of the page freely
+				</p>
 			</div>
 			<Footer />
 		</>

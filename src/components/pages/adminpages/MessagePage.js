@@ -4,10 +4,12 @@ import AppContext from "../../context/AppContext";
 import SecondNavigation from "../../SecondNavigation";
 import styles from "../../../style/pages/Messages.module.css";
 import Footer from "../../Footer";
+import Spinner from "react-bootstrap/Spinner";
 
 const MessagePage = () => {
 	const [messages, setMessages] = useState([]);
 	const [token, setToken] = useContext(AppContext);
+	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
 	useEffect(function () {
@@ -24,10 +26,30 @@ const MessagePage = () => {
 				setMessages(json);
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		}
 		fetchMessages();
 	}, []);
+
+	function refreshPage() {
+		window.location.reload(true);
+	}
+
+	if (loading) {
+		return (
+			<>
+				<SecondNavigation />
+				<h1 className={styles.title}>Messages to Holidaze</h1>
+				<div className={styles.loading_container}>
+					<Spinner animation="border" role="status">
+						<span className="visually-hidden">Loading...</span>
+					</Spinner>
+				</div>
+			</>
+		);
+	}
 
 	return (
 		<>
@@ -44,7 +66,10 @@ const MessagePage = () => {
 									<h2 className={styles.message_title}>
 										From: {message.author_name}
 									</h2>
-									<p dangerouslySetInnerHTML={{ __html: description }}></p>
+									<p
+										className={styles.message_content}
+										dangerouslySetInnerHTML={{ __html: description }}
+									></p>
 									<button
 										className={styles.delete_btn}
 										onClick={() => {
@@ -53,16 +78,24 @@ const MessagePage = () => {
 												"https://omkirsebom.no/wp-json/wp/v2/comments/" +
 												message.id;
 											console.log(url);
-											fetch(url, {
-												method: "DELETE",
-												headers: {
-													"Content-Type": "application/json",
-													accept: "application/json",
-													Authorization: `Bearer${token.token}`,
-												},
-											}).then(function () {
-												navigate("/admin");
-											});
+											if (
+												window.confirm(
+													"Are you sure you want to delete message?"
+												)
+											) {
+												fetch(url, {
+													method: "DELETE",
+													headers: {
+														"Content-Type": "application/json",
+														accept: "application/json",
+														Authorization: `Bearer${token.token}`,
+													},
+												}).then(function () {
+													refreshPage();
+												});
+											} else {
+												refreshPage();
+											}
 										}}
 									>
 										Delete Message

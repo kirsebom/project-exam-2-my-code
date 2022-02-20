@@ -26,3 +26,37 @@
 .wrapper {
 	flex: 1 0 auto;
 }
+.delete_btn {
+	margin: 0 auto;
+	padding: 10px 40px;
+	outline: none;
+	border: none;
+	background: #9f0000;
+	box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
+	transition: 0.3s ease;
+}
+.delete_btn:hover {
+	background: #ff0000;
+}
+.loading_container {
+	margin: 0 auto;
+}
+@media (max-width: 700px) {
+	.message_title {
+		font-size: 20px;
+	}
+	.message_content {
+		font-size: 14px;
+	}
+}
+@media (max-width: 400px) {
+	.message_title {
+		font-size: 16px;
+	}
+	.message_content {
+		font-size: 12px;
+	}
+	.delete_btn {
+		padding: 5px;
+	}
+}

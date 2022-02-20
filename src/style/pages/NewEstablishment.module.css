@@ -160,6 +160,18 @@
 .loading_text {
 	padding: 50px;
 }
+
+.error_container {
+	background: red;
+	margin: 0 auto;
+	padding: 20px;
+	margin-top: 20px;
+}
+.info {
+	text-align: center;
+	padding: 20px;
+}
+
 @media (max-width: 425px) {
 	.form {
 		margin-left: 20px;

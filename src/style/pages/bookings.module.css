@@ -30,6 +30,7 @@
 	box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.15);
 	transition: 0.3s ease;
 	cursor: pointer;
+	color: black;
 }
 .image {
 	width: 300px;

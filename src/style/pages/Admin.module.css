@@ -1,12 +1,8 @@
 .title {
 	text-align: center;
 }
-.container {
-	max-width: 1500px;
-	display: flex;
-	justify-content: center;
-
-	margin: 20px 20px;
+.content {
+	text-align: center;
 	padding: 20px;
 }
 .wrapper {

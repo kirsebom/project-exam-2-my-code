@@ -44,6 +44,27 @@
 	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 	transition: 0.3s ease;
 }
+.suggestion {
+	margin: 0 auto;
+	cursor: pointer;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+.suggestion:hover {
+	background: grey;
+}
+.suggestion_container {
+	display: none;
+	position: absolute;
+	top: 66px;
+	z-index: 1;
+	background: white;
+	width: 55%;
+}
+.search_field:focus + .suggestion_container {
+	display: block;
+}
 
 @media (max-width: 800px) {
 	.search_field {
